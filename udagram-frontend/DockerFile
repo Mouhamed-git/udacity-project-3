@@ -19,7 +19,7 @@ RUN ionic build
 
 
 #Exécuter
-#FROM nginx:alpine
+FROM nginx:alpine
 
 #COPY www /usr/share/nginx/html
 COPY --from=ionic /usr/src/app/www /usr/share/nginx/html
