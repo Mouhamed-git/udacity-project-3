@@ -15,7 +15,6 @@ before_script:
 
 script:
   - docker --version # print the version for logging
-  - docker image prune --all
   - docker-compose -f docker-compose-build.yaml build --parallel
   - docker tag udagram-reverseproxy miisteuhdiack/udagram-reverseproxy:v1
   - docker tag udagram-api-user miisteuhdiack/udagram-api-user:v1
