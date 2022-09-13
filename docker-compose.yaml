@@ -8,9 +8,6 @@ services:
     depends_on:
       - backend-user
       - backend-feed
-    build:
-      context: ./udagram-reverseproxy/
-      dockerfile: DockerFile
   backend-user:
     image: udagram-api-user
     environment:
@@ -23,10 +20,6 @@ services:
       AWS_BUCKET: $AWS_BUCKET
       JWT_SECRET: $JWT_SECRET
       URL: $URL
-    build:
-      context: ./udagram-api-user/
-      dockerfile: DockerFile
-
   backend-feed:
     image: udagram-api-feed
     volumes:
@@ -41,14 +34,7 @@ services:
       AWS_BUCKET: $AWS_BUCKET
       JWT_SECRET: $JWT_SECRET
       URL: $URL
-
-    build:
-      context: ./udagram-api-feed/
-      dockerfile: DockerFile
   frontend:
     image: udagram-frontend:local
     ports:
       - "8100:80"
-    build:
-      context: ./udagram-frontend/
-      dockerfile: DockerFile

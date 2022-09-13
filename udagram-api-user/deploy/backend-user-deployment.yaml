@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend-user
+  labels:
+    app: backend-user
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: backend-user
+  template:
+    metadata:
+      labels:
+        app: backend-user
+    spec:
+      containers:
+        - name: udagram-api-user
+          image: miisteuhdiack/udagram-api-user:v1
+          envFrom:
+            - secretRef:
+                name: udagram-env-secret
+            - secretRef:
+                name: udagram-aws-secret
+            - configMapRef:
+                name: udagram-configmap
+          ports:
+            - containerPort: 8080
+          resources:
+            limits:
+              cpu: 2000m
+              memory: 2048Mi
+            requests:
+              cpu: 500m
+              memory: 1024Mi
